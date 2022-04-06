@@ -6,14 +6,13 @@ import 'package:pattern_getx_methods/models/post_model.dart';
 import '../services/http_service.dart';
 
 class CreatePageController extends GetxController{
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
   Rx<TextEditingController> titleController = TextEditingController().obs;
   Rx<TextEditingController> bodyController = TextEditingController().obs;
 
 
   void apiCreatePost(BuildContext context) async{
-    isLoading = true;
-
+    isLoading(true);
     String title = titleController.value.text.toString().trim();
     String body = bodyController.value.text.toString().trim();
     Post post =Post(title: title, body: body, userId: body.hashCode);
